@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Timestamp Microservice - by codemzy</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+</head>
+<body>
+
+<div class="container">
+    
+    <div class="text-center">
+        <img src="/public/img/timestamp_microservice.jpg" />
+    </div>
+    
+    <br><br>
+    
+    <div class="col-md-6">
+        <h1>Timestamp Microservice</h1>
+        <br>
+
+        <p>Pass a unix timestamp OR a natural language date as a parameter to return both the Unix timestamp and the natural language form of that date.</p>
+
+        <p>Examples:</p>
+
+        <ul>
+            <li><a href="/December%2015,%202015"></a>/December%2015,%202015</li>
+            <li><a href="/1450137600"></a>/December%2015,%202015</li>
+        </ul>
+
+        <p>Alternatively use the form to pick a date and the service will return both the Unix timestamp and the natural language form of that date.</p>
+    
+        <br>
+    </div>
+    
+    <div class="col-md-6">
+        
+        <div class="well">
+        <form>
+            <div class="form-group">
+                <label for=inputDay>Day</label>
+                <input type="text" class="form-control" id="inputDay" placeholder="1">
+            </div>
+            <div class="form-group">
+                <label for=selectMonth>Month</label>
+                <select class="form-control" id="selectMonth">
+                    <option>January</option>
+                    <option>February</option>
+                    <option>March</option>
+                    <option>April</option>
+                    <option>May</option>
+                    <option>June</option>
+                    <option>July</option>
+                    <option>August</option>
+                    <option>September</option>
+                    <option>October</option>
+                    <option>November</option>
+                    <option>December</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for=inputYear>Year</label>
+                <input type="text" class="form-control" id="inputYear" placeholder="2016">
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+        </div>
+        
+    </div>
+    
+</div>
+
+</body>
+</html>
