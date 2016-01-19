@@ -1,0 +1,16 @@
+{
+  "name": "fcc-timestamp-microservice",
+  "description": "A timestamp microservice built for a FCC basejump",
+  "version": "1.0.0",
+  "author": {
+    "name": "codemzy"
+  },
+  "dependencies": {
+    "body-parser": "~1.14.x",
+    "express": "~4.13.x",
+    "moment": "~2.12.x"
+  },
+  "engines": {
+    "node": "*"
+  },
+}
