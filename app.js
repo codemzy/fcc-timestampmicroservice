@@ -6,6 +6,8 @@ var bodyParser = require('body-parser');
 // force use of nodes native query parser module querystring
 var parseUrlencoded = bodyParser.urlencoded({ extended: false });
 
+app.set('port', (process.env.PORT || 8080));
+
 app.use('/public', express.static(process.cwd() + '/public'));
 
 app.get('/', function(req, res) {
@@ -43,6 +45,6 @@ app.post('/date_timestamp', parseUrlencoded, function(req, res) {
 });
 
 
-
-app.listen(8080);
-console.log('Express server listening on port 8080');
+app.listen(app.get('port'), function() {
+  console.log('Express server listening on port', app.get('port'));
+});
