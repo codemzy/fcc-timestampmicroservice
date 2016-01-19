@@ -1,7 +1,10 @@
 var express = require('express');
 var app = express();
+var moment = require('moment');
 
-// to do - install moment npm install moment and use it to validate the dates
+var bodyParser = require('body-parser');
+// force use of nodes native query parser module querystring
+var parseUrlencoded = bodyParser.urlencoded({ extended: false });
 
 app.use('/public', express.static(process.cwd() + '/public'));
 
@@ -11,21 +14,34 @@ app.get('/', function(req, res) {
 
 var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
+// requests from the URL - dynamic route
 app.get('/:time', function(req, res) {
     var time = Date.parse(req.params.time)/1000;
-    var date = new Date(req.params.time * 1000);
-    var dateStr = months[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear();
-    if (isNaN(date.getDate()) && time == null) {
-        res.json({ unix: null, natural: null });
+    if (!time) {
+        time = parseInt(req.params.time);
     }
-    else if (isNaN(date.getDate())) {
-        res.json({ unix: time, natural: req.params.time });
-    }
-    else {
+    if (moment(time).isValid()) {
+        var date = new Date(time * 1000);
+        var dateStr = months[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear();
         res.json({ unix: time, natural: dateStr });
     }
-    
+    else {
+        res.json({ unix: null, natural: null });
+    }
 });
+
+// requests from the form
+app.post('/date_timestamp', parseUrlencoded, function(req, res) {
+    var dateStr = req.body.month + " " + req.body.day + ", " + req.body.year;
+    var time = Date.parse(dateStr)/1000;
+    if (moment(time).isValid()) {
+        res.json({ unix: time, natural: dateStr });
+    }
+    else {
+        res.json({ unix: null, natural: null });
+    }
+});
+
 
 
 app.listen(8080);

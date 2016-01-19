@@ -35,14 +35,14 @@
     <div class="col-md-6">
         
         <div class="well">
-        <form>
+        <form action="/date_timestamp" method="POST">
             <div class="form-group">
                 <label for=inputDay>Day</label>
-                <input type="text" class="form-control" id="inputDay" placeholder="1">
+                <input type="text" name="day" class="form-control" id="inputDay" placeholder="1">
             </div>
             <div class="form-group">
                 <label for=selectMonth>Month</label>
-                <select class="form-control" id="selectMonth">
+                <select class="form-control" name="month" id="selectMonth">
                     <option>January</option>
                     <option>February</option>
                     <option>March</option>
@@ -59,9 +59,9 @@
             </div>
             <div class="form-group">
                 <label for=inputYear>Year</label>
-                <input type="text" class="form-control" id="inputYear" placeholder="2016">
+                <input type="text" name="year" class="form-control" id="inputYear" placeholder="2016">
             </div>
-            <button type="submit" class="btn btn-default">Submit</button>
+            <input type="submit" class="btn btn-default" value="Submit">
         </form>
         </div>
         
