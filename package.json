@@ -10,7 +10,4 @@
     "express": "~4.13.x",
     "moment": "~2.12.x"
   },
-  "engines": {
-    "node": "*"
-  },
 }
