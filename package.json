@@ -9,8 +9,5 @@
     "body-parser": "~1.14.x",
     "express": "~4.13.x",
     "moment": "~2.12.x"
-  },
-  "engines": {
-    "node": ">= 0.10.0"
   }
 }
