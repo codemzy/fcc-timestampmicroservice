@@ -18,18 +18,18 @@ var months = ["January", "February", "March", "April", "May", "June", "July", "A
 
 // requests from the URL - dynamic route
 app.get('/:time', function(req, res) {
-    var time = Date.parse(req.params.time)/1000;
-    if (!time) {
-        time = parseInt(req.params.time);
+    var unixVal = null;
+    var natVal = null;
+    if(moment(req.params.time, "MMMM DD, YYYY", true).isValid()){
+        unixVal = Date.parse(req.params.time)/1000;
+        natVal = req.params.time;
     }
-    if (moment(time).isValid()) {
-        var date = new Date(time * 1000);
-        var dateStr = months[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear();
-        res.json({ unix: time, natural: dateStr });
+    else if (moment(req.params.time, 'X', true).isValid()) {
+        unixVal = parseInt(req.params.time);
+        var date = new Date(unixVal * 1000);
+        natVal = months[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear();
     }
-    else {
-        res.json({ unix: null, natural: null });
-    }
+    res.json({ unix: unixVal, natural: natVal });
 });
 
 // requests from the form
