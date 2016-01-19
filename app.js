@@ -20,13 +20,15 @@ var months = ["January", "February", "March", "April", "May", "June", "July", "A
 app.get('/:time', function(req, res) {
     var unixVal = null;
     var natVal = null;
-    if(moment(req.params.time, "MMMM DD, YYYY", true).isValid()){
-        unixVal = Date.parse(req.params.time)/1000;
-        natVal = req.params.time;
-    }
-    else if (moment(req.params.time, 'X', true).isValid()) {
+    if (moment(req.params.time, 'X', true).isValid()) {
         unixVal = parseInt(req.params.time);
         var date = new Date(unixVal * 1000);
+        natVal = months[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear();
+    }
+    else if(moment(req.params.time, "MMMM D, YYYY", true).isValid() || moment(req.params.time, "MMMM D YYYY", true).isValid() || moment(req.params.time, "YYYY MMMM D", true).isValid() ||
+    moment(req.params.time, "MMM D, YYYY", true).isValid() || moment(req.params.time, "MMM D YYYY", true).isValid() || moment(req.params.time, "YYYY MMM D", true).isValid()){
+        unixVal = Date.parse(req.params.time)/1000;
+        date = new Date(unixVal * 1000);
         natVal = months[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear();
     }
     res.json({ unix: unixVal, natural: natVal });
