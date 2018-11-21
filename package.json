@@ -5,6 +5,9 @@
   "author": {
     "name": "codemzy"
   },
+  "scripts": {
+    "start": "node app.js"
+  },
   "dependencies": {
     "body-parser": "~1.14.x",
     "express": "~4.13.x",
